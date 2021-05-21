@@ -1,4 +1,7 @@
 Function.prototype.myBind = function (context, ...args) {
+  if (typeof this !== 'function') {
+		throw new TypeError(`${this} is not a function`)
+	}
 	//新建一个变量赋值为this，表示当前函数
 	const fn = this
 	//判断有没有传参进来，若为空则赋值[]

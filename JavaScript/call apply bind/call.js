@@ -1,4 +1,7 @@
 Function.prototype.myCall = function (context, ...args) {
+  if (typeof this !== 'function') {
+		throw new TypeError(`${this} is not a function`)
+	}
 	let cxt = context || window
 	//  将当前被调用的方法定义在cxt.func上.(  cxt.func()执行,func内部的this指向cxt  )
 	//  新建一个唯一的Symbol变量避免重复
