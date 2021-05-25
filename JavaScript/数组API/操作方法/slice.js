@@ -13,29 +13,69 @@ end 可选
   如果 end 大于数组的长度，slice 也会一直提取到原数组末尾。
 */
 Array.prototype.mySlice = function (begin = 0, end) {
+	let result = []
+	let startIndex
+	let endIndex
+	let maxIndex = this.length - 1
+
 	// 空数组
 	if (this.length == 0) return []
-	// 结尾越界
-	if (Number(end) < 0 - this.length) {
-		return []
-	}
-  // 头尾倒转
-	if (Number(begin) >= Number(end)) {
-		return []
+
+	// begin不是number类型(此时也一定不是undefined类型,因为传入会自动取0),截取起点下标默认为0
+	if (typeof begin !== 'number') {
+		startIndex = 0
+	} else {
+		if (Number(begin) < 0 && Number(begin) < 0 - this.length) {
+			startIndex = 0
+		} else if (Number(begin) < 0) {
+			startIndex = Number(begin) + this.length
+		} else if (Number(begin) < this.length) {
+			startIndex = Number(begin)
+		} else {
+			return []
+		}
 	}
 
-	let maxIndex = this.length - 1
-	// 如果 begin 超出原数组的索引范围，则会返回空数组。
-	if (Number(begin) > maxIndex) {
-		return []
-	}
-	let startIndex = Number(begin)
-	let endIndex
-	if (typeof end === 'undefined' || Number(end) > maxIndex) {
-		endIndex = maxIndex
+	// end是undefined表示缺省,截取终点下标为this数组最后一个元素下标
+	if (typeof end == 'undefined') {
+		endIndex = maxIndex + 1
 	} else if (typeof end !== 'number') {
 		return []
 	} else {
-		endIndex = end
+		if (Number(end) < 0 && Number(end) < 0 - this.length) {
+			return []
+		} else if (Number(end) < 0) {
+			endIndex = Number(end) + this.length
+		} else if (Number(end) < this.length) {
+			endIndex = Number(end)
+		} else {
+			endIndex = maxIndex + 1
+		}
 	}
+
+	// 头尾倒转
+	if (startIndex >= endIndex) {
+		return []
+	}
+
+	for (let i = startIndex; i < endIndex; i++) {
+		result.push(this[i])
+	}
+	return result
 }
+const animals = ['ant', 'bison', 'camel', 'duck', 'elephant']
+
+console.log(animals.mySlice(2))
+console.log(animals.slice(2))
+
+console.log(animals.mySlice(2, 4))
+console.log(animals.slice(2, 4))
+
+console.log(animals.mySlice(1, 5))
+console.log(animals.slice(1, 5))
+
+console.log(animals.mySlice(0, () => {}))
+console.log(animals.slice(0, () => {}))
+
+console.log(animals.mySlice(() => {}))
+console.log(animals.slice(() => {}))
