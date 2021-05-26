@@ -40,7 +40,7 @@ Array.prototype.mySlice = function (begin = 0, end) {
 	// end是undefined表示缺省,截取终点下标为this数组最后一个元素下标
 	if (typeof end == 'undefined') {
 		endIndex = maxIndex + 1
-	} else if (typeof end !== 'number') {
+	} else if (isNaN(Number(end))) {
 		return []
 	} else {
 		if (Number(end) < 0 && Number(end) < 0 - this.length) {
@@ -67,20 +67,30 @@ Array.prototype.mySlice = function (begin = 0, end) {
 
 const animals = ['ant', 'bison', 'camel', 'duck', 'elephant']
 
+console.log('1-----------------------')
 console.log(animals.mySlice(undefined))
 console.log(animals.slice(undefined))
 
+console.log('2-----------------------')
 console.log(animals.mySlice(2))
 console.log(animals.slice(2))
 
+console.log('3-----------------------')
 console.log(animals.mySlice(2, 4))
 console.log(animals.slice(2, 4))
 
-console.log(animals.mySlice('2', 5))
-console.log(animals.slice('2', 5))
+console.log('4-----------------------')
+console.log(animals.mySlice('2', '5'))
+console.log(animals.slice('2', '5'))
 
+console.log('5-----------------------')
+console.log(animals.mySlice(-5, -1))
+console.log(animals.slice(-5, -1))
+
+console.log('6-----------------------')
 console.log(animals.mySlice(0, () => {}))
 console.log(animals.slice(0, () => {}))
 
+console.log('7-----------------------')
 console.log(animals.mySlice(() => {}))
 console.log(animals.slice(() => {}))
