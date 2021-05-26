@@ -21,8 +21,9 @@ Array.prototype.mySlice = function (begin = 0, end) {
 	// 空数组
 	if (this.length == 0) return []
 
-	// begin不是number类型(此时也一定不是undefined类型,因为传入会自动取0),截取起点下标默认为0
-	if (typeof begin !== 'number') {
+	// Number(begin)不是number类型(此时也必然不是undefined类型,因为传入undefined实参时,默认参数会自动取0),截取起点下标默认为0
+	// Number(begin)!=Number(begin) NaN永不相等
+	if (isNaN(Number(begin))) {
 		startIndex = 0
 	} else {
 		if (Number(begin) < 0 && Number(begin) < 0 - this.length) {
@@ -63,7 +64,11 @@ Array.prototype.mySlice = function (begin = 0, end) {
 	}
 	return result
 }
+
 const animals = ['ant', 'bison', 'camel', 'duck', 'elephant']
+
+console.log(animals.mySlice(undefined))
+console.log(animals.slice(undefined))
 
 console.log(animals.mySlice(2))
 console.log(animals.slice(2))
@@ -71,8 +76,8 @@ console.log(animals.slice(2))
 console.log(animals.mySlice(2, 4))
 console.log(animals.slice(2, 4))
 
-console.log(animals.mySlice(1, 5))
-console.log(animals.slice(1, 5))
+console.log(animals.mySlice('2', 5))
+console.log(animals.slice('2', 5))
 
 console.log(animals.mySlice(0, () => {}))
 console.log(animals.slice(0, () => {}))
