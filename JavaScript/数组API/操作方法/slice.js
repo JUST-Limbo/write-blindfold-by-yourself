@@ -21,7 +21,7 @@ Array.prototype.mySlice = function (begin = 0, end) {
 	// 空数组
 	if (this.length == 0) return []
 
-	// Number(begin)不是number类型(此时也必然不是undefined类型,因为传入undefined实参时,默认参数会自动取0),截取起点下标默认为0
+	// Number(begin)不是number类型截取起点下标默认为0(此时begin必然不是undefined类型,因为当begin传入undefined实参时等同于begin没传实参,默认参数会自动取0)
 	// Number(begin)!=Number(begin) NaN永不相等
 	if (isNaN(Number(begin))) {
 		startIndex = 0
@@ -94,3 +94,7 @@ console.log(animals.slice(0, () => {}))
 console.log('7-----------------------')
 console.log(animals.mySlice(() => {}))
 console.log(animals.slice(() => {}))
+
+console.log('8-----------------------')
+console.log(animals.mySlice('abc'))
+console.log(animals.slice('abc'))
