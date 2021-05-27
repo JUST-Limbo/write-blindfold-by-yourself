@@ -52,7 +52,7 @@ Array.prototype.mySplice = function (begin = 0, count, ...items) {
 
 	/*
     当this.length=startIndex执行后,原数组被截断.
-    此时不能用 this=this.concat(result,rightRemain)
+    此时不能用 this=this.concat(items,rightRemain)
     因为concat会返回一个新的数组(引用类型),赋值后this原本存储的地址会被替换,
     会导致this指向另一个数组,这样的话就不满足 '改变原数组' 了
   */
