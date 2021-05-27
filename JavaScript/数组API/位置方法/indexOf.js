@@ -8,7 +8,7 @@ fromIndex 可选
 */
 Array.prototype.myIndexOf = function (searchElement, fromIndex = 0) {
 	if (this.length == 0) return -1
-	// 此处也可以不声明startIndex直接对fromIndex覆盖赋值,但是对实参赋值这种行为从代码规范的角度似乎不太合适?
+	// 此处也可以不声明startIndex直接对fromIndex覆盖赋值,但是对形参赋值这种行为从代码规范的角度似乎不太合适?
 	let startIndex
 	if (isNaN(Number(fromIndex))) {
 		startIndex = 0
