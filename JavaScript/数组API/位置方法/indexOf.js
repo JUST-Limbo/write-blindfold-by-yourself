@@ -27,13 +27,16 @@ Array.prototype.myIndexOf = function (searchElement, fromIndex = 0) {
 	}
 	return -1
 }
-const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
+const beasts = ['ant', 'bison', 'camel', 'duck', 'bison']
 
-console.log(beasts.indexOf('bison'));
+console.log(beasts.indexOf('bison'))
 console.log(beasts.myIndexOf('bison'))
 
-console.log(beasts.indexOf('bison', 2));
+console.log(beasts.indexOf('bison', 2))
 console.log(beasts.myIndexOf('bison', 2))
 
-console.log(beasts.indexOf('giraffe'));
+console.log(beasts.indexOf('giraffe'))
 console.log(beasts.myIndexOf('giraffe'))
+
+console.log(beasts.indexOf('bison', () => {}))
+console.log(beasts.myIndexOf('bison', () => {}))

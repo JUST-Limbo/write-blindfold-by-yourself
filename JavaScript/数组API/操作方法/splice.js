@@ -120,9 +120,9 @@ console.log(D)
 console.log(D2)
 
 console.log('8-----------------------')
-var E=['a', 'b', 'c', 'd','e']
-var E2=['a', 'b', 'c', 'd','e']
-console.log(E.splice(()=>{}))
+var E = ['a', 'b', 'c', 'd', 'e']
+var E2 = ['a', 'b', 'c', 'd', 'e']
+console.log(E.splice(() => {}))
 console.log(E2.mySplice(() => {}))
 console.log(E)
 console.log(E2)
